@@ -3,6 +3,12 @@ body{
   background-color: #6798c0;
   color: #ffffff;
 }
+.sign{
+  padding: 30px;
+  text-align: right;
+  background: rgb(253, 216, 93);
+  color: black;
+}
 .header{
   padding: 30px;
   text-align: center;
@@ -13,9 +19,17 @@ body{
   font-size: 20px;
   width: 120px;
   background: #c8ecb3;
-  border: 10px;
+  border: 1px;
   border-radius:100px;
   border-color: black;
+}
+
+.score_button{
+  font-size: 20px;
+  width: 120px;
+  background: #c8ecb3;
+  border: none;
+  z-index: 1;
 }
 
 .footer{
@@ -28,9 +42,10 @@ body{
 .main{
   -ms-flex: 80%;
   flex: 80%;
-  background-color: #90ACB4;
+  background-color: 90ACB4;
   padding: 20px;
   color: #fbf7f7;
+  text-align: center;
 }
 
 .test_page{
@@ -88,7 +103,7 @@ body{
 .home_header{
   padding: 30px;
   text-align: center;
-  background-image: url("./Haachama.gif");
+  background-image: url("https://cdn.discordapp.com/attachments/713379026487476235/818523690961993738/Haachama.gif");
   color: black;
   background-size: 170px 170px;
 }
@@ -104,10 +119,4 @@ body{
 }
 .inputnumber{
 	width:30px;
-}
-.inc{
-	color:Tomato;
-}
-.cor{
-	color:MediumSeaGreen;
 }
