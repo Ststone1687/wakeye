@@ -1,0 +1,41 @@
+<html>
+  <head>
+  	<link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/819072942319206430/KPto4E44ExWZNAgGSdqYGa2sxpjxPu0cBjmtYwqHiZSpL8iFAa5oo0owksBGMRLWeBeoQAMckUbUYSXAjCIl7LAvUIBGOSKNqIIL.png" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>電神養成計畫</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="header">
+  	  <h1>60秒計時賽</h1>
+      <h2>達人榜</h2>
+    </div>
+    <br><br><br>
+    <form action="/" method="POST">
+      <table border="1" align="center">
+        <tr>
+          <th>使用者：</th>
+          <th>60秒內最高答對題數：</th>
+          <th>答錯題數：</th>
+          <th>答對率：</th>
+        </tr>
+        {% for s in sorted_counts%}
+          <tr>
+            <td>{{s[0]}}</td>
+            <td>{{s[1][0]}}</td>
+            <td>{{s[1][1]}}</td>
+            <td>{{s[1][3]*100}}%</td>
+          </tr>
+        {% endfor %}
+      </table>
+    </form>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <a href="https://wakeye.reflecstreamz.repl.co/home.html">回首頁</a>
+    <div class="footer">
+      <big><i>database by Ststone</i></big>
+    </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <div id="page_top"><a href="#"></a></div>
+  </body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/819072942319206430/KPto4E44ExWZNAgGSdqYGa2sxpjxPu0cBjmtYwqHiZSpL8iFAa5oo0owksBGMRLWeBeoQAMckUbUYSXAjCIl7LAvUIBGOSKNqIIL.png" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>電神養成計畫</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="sign">
+      <a>登入</a>&emsp;&emsp;<a href="https://tiantian.guaichi.repl.co/creat/">註冊</a>
+    </div>
+    <div class="header">
+  	  <h1>角度代換</h1>
+      <h2>trigonometry</h2>
+      <h3>計分模式<br><!--<a href="20challenge">擊敗光輝魔獸！</a>--></h3>
+    </div>
+    
+    <div class="test_page">
+			<h1><p id="oparea">owo</p></h1>
+			<p id="solution"></p>
+			<h3><p id="times"></p></h3>
+			<h3 display:inline><input type="checkbox" id=-1 >負 &emsp;&emsp;
+			<input type="button" class="bruh" value="無意義" onclick="ans(this.id)" id=0></h3>
+			<input type="button" class="bruh" value="0" onclick="ans(this.id)" id=1>
+			<input type="button" class="bruh" value="1" onclick="ans(this.id)" id=2>
+			<input type="button" class="bruh" value="2" onclick="ans(this.id)" id=3>
+			<input type="button" class="bruh" value="1/2" onclick="ans(this.id)" id=4>
+			<br>
+			<input type="button" class="bruh" value="√2" onclick="ans(this.id)" id=5>
+			<input type="button" class="bruh" value="√3" onclick="ans(this.id)" id=6>
+			<input type="button" class="bruh" value="√2/2" onclick="ans(this.id)" id=7>
+			<input type="button" class="bruh" value="√3/3" onclick="ans(this.id)" id=8>
+			<br>
+			<input type="button" class="bruh" value="√3/2" onclick="ans(this.id)" id=9>
+			<input type="button" class="bruh" value="2√3/3" onclick="ans(this.id)" id=10>
+			<input type="button" class="bruh" value="2+√3" onclick="ans(this.id)" id=11>
+			<input type="button" class="bruh" value="2-√3" onclick="ans(this.id)" id=12>
+			<br>
+			<input type="button" class="bruh" value="√6+√2" onclick="ans(this.id)" id=13>
+			<input type="button" class="bruh" value="√6-√2" onclick="ans(this.id)" id=14>
+			<input type="button" class="bruh" value="(√6+√2)/4" onclick="ans(this.id)" id=15>
+			<input type="button" class="bruh" value="(√6-√2)/4" onclick="ans(this.id)" id=16>
+			<br><br>
+			<input type="button" class="bruh" value="start" onclick="starts()">
+			<h3 style="color:MediumSeaGreen" id="cor"></h3>
+			<h3 style="color:Tomato" id="inc"></h3>
+			<h3 style="color:Black" id="una"></h3>
+      <script>
+        var k,str,nv,n,i,nflag,flag,bruh=1,begin,end,c,w,u;
+        c=w=u=0;
+        u=-1;
+        var fun=['sin','cos','tan','cot','sec','csc'];
+        var val=[0,15,30,45,60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345];
+        var sols=["無意義","0","1","2","1/2","√2","√3","√2/2","√3/3","√3/2","2√3/3","2+√3","2-√3","√6+√2","√6-√2","(√6+√2)/4","(√6-√2)/4"];
+        var sol=[[1,16,4,7,9,15,2,15,9,7,4,16,1,-16,-4,-7,-9,-15,-2,-15,-9,-7,-4,-16,-1],
+        					[2,15,9,7,4,16,1,-16,-4,-7,-9,-15,-2,-15,-9,-7,-4,-16,1,16,4,7,9,15],
+        					[1,12,8,2,6,11,0,-11,-6,-2,-8,-12,1,12,8,2,6,11,0,-11,-6,-2,-8,-12],
+        					[0,11,6,2,8,12,1,-12,-8,-2,-6,-11,0,11,6,2,8,12,1,-12,-8,-2,-6,-11],
+        					[2,14,10,5,3,13,0,-13,-3,-5,-10,-14,-2,-14,-10,-5,-3,-13,0,13,3,5,10,14],
+        					[0,13,3,5,10,14,2,14,10,5,3,13,0,-13,-3,-5,-10,-14,-2,-14,-10,-5,-3,-13]];
+        function ans(id){
+          flag="";
+          var ans=id;
+          if(typeof(k)==="undefined")
+            document.getElementById("solution").innerHTML="<h1>請先按start!</h1>";
+          else if(bruh){
+            if(document.getElementById(-1).checked&&ans!=1){
+              flag="-";
+              ans*=-1;
+            }
+            if((k==0||k==5)&&((i+3600)%360)>180){
+              flag="-";
+              ans*=-1;
+            }
+            else if((k==1||k==4)&&(((i+3600)%360)<270||(i+3600)%360)>90){
+              flag="-";
+              ans*=-1;
+            }
+            else if((k==2||k==3)&&((((i+3600)%360)<180&&((i+3600)%360)>90)||((i+3600)%360)>270)){
+              flag="-";
+              ans*=-1;
+            }
+            if(ans==sol[k][n]){
+              correct();
+            }
+            else wrong();
+            bruh=0;
+            end=new Date().getTime();
+            document.getElementById("times").innerHTML="花費時間： "+(parseInt(end)-parseInt(begin))/1000.0+" 秒";
+            count();
+          }
+        }
+        function count(){
+        	document.getElementById("cor").innerHTML="正確題數："+c;
+			    document.getElementById("inc").innerHTML="錯誤題數："+w;
+			    document.getElementById("una").innerHTML="未答題數："+u;
+        }
+        function starts(){
+        	if(bruh){
+        		u++;
+        		count();
+        	}
+        	document.getElementById(-1).checked=0;
+          begin=new Date().getTime();
+          bruh=1;
+          k=Math.floor(Math.random()*9)%6;
+          n=Math.floor(Math.random()*24);
+          if(Math.random()>0.5)
+            nflag=-1;
+          else nflag=1;
+          i=nflag*360*Math.floor(20*(1-((Math.random())**(1/12)))-1);
+          document.getElementById("oparea").innerHTML=fun[k]+"("+(val[n]+i)+"°)=?<br>";
+          document.getElementById("solution").innerHTML="";
+          document.getElementById("times").innerHTML="";
+        }
+        function correct(){
+        	c++;
+          document.getElementById("solution").innerHTML="<h1 style="+"color:MediumSeaGreen;"+">correct"+"</h1><h1>answer is "+((sol[k][n]<0)?"-":"")+"("+sols[Math.abs(sol[k][n])]+")"+"</h1>";
+        }
+        function wrong(){
+        	w++;
+          document.getElementById("solution").innerHTML="<h1 style="+"color:Tomato;"+">wrong"+"</h1><h1>answer is "+((sol[k][n]<0)?"-":"")+"("+sols[Math.abs(sol[k][n])]+")"+"</h1>";
+        }
+      </script>
+      <br><br><br><br><br><br><br>
+    </div>
+    <div class="footer">
+      <big><i>design: Ststone<br> code: 925</i></big>
+    </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <div id="page_top"><a href="#"></a></div>
+  </body>
+</html>

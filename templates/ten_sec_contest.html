@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/819072942319206430/KPto4E44ExWZNAgGSdqYGa2sxpjxPu0cBjmtYwqHiZSpL8iFAa5oo0owksBGMRLWeBeoQAMckUbUYSXAjCIl7LAvUIBGOSKNqIIL.png" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>電神養成計畫</title>
+    <link rel="stylesheet" href="/static/style.css">
+  </head>
+  <body>
+    <div class="sign">
+      <a href="https://tiantian.guaichi.repl.co/creat/">註冊</a>
+      <!--<button onclick="sign_in()" id="sign">登入</button>-->
+    </div>
+    <div class="header">
+      <h1>第三節、出其不意的挑戰書</h1>
+  	  <h2>60秒挑戰賽</h2>
+      <h2>60 seconds challenge</h2>
+      <h3>「什麼火鍋？現在大家看的是冰冰姐泡湯！」—手機相機<b>年</b>還有腳<br><br><details><summary>劇情</summary>偉凱將考卷拿給天天看後，<br>
+      天天不知道是哪根筋不對，<br>
+      突然地對偉凱下了戰帖：<br>
+      「我們來比60秒內誰的解題數多吧！」<br>
+      你覺得天天剛剛攻擊你，<br>
+      滿臉不爽的你現在只想把他壓在地上，<br>
+      但是偉凱想要得知異樣的天天是怎麼了，<br>
+      於是決定接受他的挑戰。<br></details></h3>
+    </div>
+    
+    <div class="test_page">
+			<h1><p id="oparea">按start後開始計時</p></h1>
+			<p id="solution"></p>
+			<h3><p id="times"></p></h3>
+			<h3 display:inline><input type="checkbox" id=-1 ><a id="me">負</a> &emsp;&emsp;
+			<input type="button" class="bruh" value="無意義" onclick="ans(this.id)" id=0></h3>
+			<input type="button" class="bruh" value="0" onclick="ans(this.id)" id=1>
+			<input type="button" class="bruh" value="1" onclick="ans(this.id)" id=2>
+			<input type="button" class="bruh" value="2" onclick="ans(this.id)" id=3>
+			<input type="button" class="bruh" value="1/2" onclick="ans(this.id)" id=4>
+			<br>
+			<input type="button" class="bruh" value="√2" onclick="ans(this.id)" id=5>
+			<input type="button" class="bruh" value="√3" onclick="ans(this.id)" id=6>
+			<input type="button" class="bruh" value="√2/2" onclick="ans(this.id)" id=7>
+			<input type="button" class="bruh" value="√3/3" onclick="ans(this.id)" id=8>
+			<br>
+			<input type="button" class="bruh" value="√3/2" onclick="ans(this.id)" id=9>
+			<input type="button" class="bruh" value="2√3/3" onclick="ans(this.id)" id=10>
+			<input type="button" class="bruh" value="2+√3" onclick="ans(this.id)" id=11>
+			<input type="button" class="bruh" value="2-√3" onclick="ans(this.id)" id=12>
+			<br>
+			<input type="button" class="bruh" value="√6+√2" onclick="ans(this.id)" id=13>
+			<input type="button" class="bruh" value="√6-√2" onclick="ans(this.id)" id=14>
+			<input type="button" class="bruh" value="(√6+√2)/4" onclick="ans(this.id)" id=15>
+			<input type="button" class="bruh" value="(√6-√2)/4" onclick="ans(this.id)" id=16>
+			<br><br>
+			<input type="button" class="bruh" value="start" onclick="starts()" id="start"><br><br>
+			<h3 style="color:MediumSeaGreen" id="cor"></h3>
+			<h3 style="color:Tomato" id="inc"></h3>
+			<h3 style="color:Black" id="una"></h3>
+      <form method="post">
+        <a name="data">傳送排名資料：</a><br>
+        <input class="score_button" type="hidden" id="COR" name="COR" value="" ></input>&emsp;
+        <input class="score_button" type="hidden" id="INC" name="INC" value="" ></input>&emsp;
+        <input class="score_button" type="hidden" id="UNA" name="UNA" value="" ></input>&emsp;<br>
+        <input placeholder="使用者名稱" id="sign_name" name="sname" value=""></input><br>
+        <input type="password" placeholder="密碼" id="sign_pass" name="spass" value=""></input><br>
+        <!--<input id="User_name" placeholder="請輸入你的暱稱" name="User_name"></input>-->
+        <button id="record" name="record" type="submit">送出</button>
+      </form><br>
+      <a class="score_button" href="https://tiantian.guaichi.repl.co/">再來一次！</a>&emsp;&emsp;
+      <a class="score_button" href="https://tiantian.guaichi.repl.co/rank/">排行榜</a>
+      <script>
+        var k,str,nv,n,i,nflag,flag,bruh=1,begin,end,c,w,u;
+        c=w=u=0;
+        u=-1;
+        var fun=['sin','cos','tan','cot','sec','csc'];
+        var val=[0,15,30,45,60,75,90,105,120,135,150,165,180,195,210,225,240,255,270,285,300,315,330,345];
+        var sols=["無意義","0","1","2","1/2","√2","√3","√2/2","√3/3","√3/2","2√3/3","2+√3","2-√3","√6+√2","√6-√2","(√6+√2)/4","(√6-√2)/4"];
+        var sol=[[1,16,4,7,9,15,2,15,9,7,4,16,1,-16,-4,-7,-9,-15,-2,-15,-9,-7,-4,-16,-1],
+        					[2,15,9,7,4,16,1,-16,-4,-7,-9,-15,-2,-15,-9,-7,-4,-16,1,16,4,7,9,15],
+        					[1,12,8,2,6,11,0,-11,-6,-2,-8,-12,1,12,8,2,6,11,0,-11,-6,-2,-8,-12],
+        					[0,11,6,2,8,12,1,-12,-8,-2,-6,-11,0,11,6,2,8,12,1,-12,-8,-2,-6,-11],
+        					[2,14,10,5,3,13,0,-13,-3,-5,-10,-14,-2,-14,-10,-5,-3,-13,0,13,3,5,10,14],
+        					[0,13,3,5,10,14,2,14,10,5,3,13,0,-13,-3,-5,-10,-14,-2,-14,-10,-5,-3,-13]];
+        function ans(id){
+          flag="";
+          var ans=id;
+          if(typeof(k)==="undefined")
+            document.getElementById("solution").innerHTML="<h1>請先按start!</h1>";
+          else if(bruh){
+            if(document.getElementById(-1).checked&&ans!=1){
+              flag="-";
+              ans*=-1;
+            }
+            if((k==0||k==5)&&((i+3600)%360)>180){
+              flag="-";
+              ans*=-1;
+            }
+            else if((k==1||k==4)&&(((i+3600)%360)<270||(i+3600)%360)>90){
+              flag="-";
+              ans*=-1;
+            }
+            else if((k==2||k==3)&&((((i+3600)%360)<180&&((i+3600)%360)>90)||((i+3600)%360)>270)){
+              flag="-";
+              ans*=-1;
+            }
+            if(ans==sol[k][n]){
+              correct();
+            }
+            else wrong();
+            bruh=0;
+            count();
+            new_ques();
+          }
+        }
+        function count(){
+        	document.getElementById("cor").innerHTML="正確題數："+c;
+			    document.getElementById("inc").innerHTML="錯誤題數："+w;
+        }
+        function sign_in(){
+          document.getElementById("sign").style.display ="none";
+          document.getElementById("sign_name").style.display ="block";
+        }
+        function starts(){
+          document.getElementById("start").style.display ="none";
+        	if(bruh){
+        		u++;
+        		count();
+        	}
+        	document.getElementById(-1).checked=0;
+          bruh=1;
+          k=Math.floor(Math.random()*9)%6;
+          n=Math.floor(Math.random()*24);
+          if(Math.random()>0.5)
+            nflag=-1;
+          else nflag=1;
+          i=nflag*360*Math.floor(20*(1-((Math.random())**(1/12)))-1);
+          document.getElementById("oparea").innerHTML=fun[k]+"("+(val[n]+i)+"°)=?<br>";
+          document.getElementById("solution").innerHTML="";
+          setTimeout(function(){
+            document.getElementById("times").innerHTML="時間到！";
+            document.getElementById(0).style.display ="none";
+            document.getElementById(-1).style.display ="none";
+            document.getElementById("me").style.display ="none";
+            document.getElementById(1).style.display ="none";
+            document.getElementById(2).style.display ="none";
+            document.getElementById(3).style.display ="none";
+            document.getElementById(4).style.display ="none";
+            document.getElementById(5).style.display ="none";
+            document.getElementById(6).style.display ="none";
+            document.getElementById(7).style.display ="none";
+            document.getElementById(8).style.display ="none";
+            document.getElementById(9).style.display ="none";
+            document.getElementById(10).style.display ="none";
+            document.getElementById(11).style.display ="none";
+            document.getElementById(12).style.display ="none";
+            document.getElementById(13).style.display ="none";
+            document.getElementById(14).style.display ="none";
+            document.getElementById(15).style.display ="none";
+            document.getElementById(16).style.display ="none";
+            document.getElementById("COR").value =c;
+            document.getElementById("INC").value =w;
+            document.getElementById("UNA").value =u;
+          },60000);
+        }
+        function new_ques(){
+        	if(bruh){
+        		u++;
+        		count();
+        	}
+        	document.getElementById(-1).checked=0;
+          bruh=1;
+          k=Math.floor(Math.random()*9)%3;
+          n=Math.floor(Math.random()*24);
+          if(Math.random()>0.5)
+            nflag=-1;
+          else nflag=1;
+          i=nflag*360*Math.floor(20*(1-((Math.random())**(1/12)))-1);
+          document.getElementById("oparea").innerHTML=fun[k]+"("+(val[n]+i)+"°)=?<br>";
+        }
+        function correct(){
+        	c++;
+          document.getElementById("solution").innerHTML="<h1 style="+"color:MediumSeaGreen;"+">correct"+"</h1><h1>answer is "+((sol[k][n]<0)?"-":"")+"("+sols[Math.abs(sol[k][n])]+")"+"</h1>";
+        }
+        function wrong(){
+        	w++;
+          document.getElementById("solution").innerHTML="<h1 style="+"color:Tomato;"+">wrong"+"</h1><h1>answer is "+((sol[k][n]<0)?"-":"")+"("+sols[Math.abs(sol[k][n])]+")"+"</h1>";
+        }
+      </script>
+      <br>
+      <a class="home_button" href="https://wakeye.reflec5.repl.co/home.html" >回首頁</a><br>
+      <a class="home_button" href="https://tiantian.guaichi.repl.co/20xchallengetemplate/">第二節幕間、洞窟的最深處</a>
+      <a class="home_button" href="https://wakeye.reflec5.repl.co/polar.html">第四節、出口被消失的洞窟</a>
+      <br><br><br><br><br><br><br>
+    </div>
+    <div class="footer">
+      <big><i>design: Ststone<br> code: 925</i></big>
+    </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <div id="page_top"><a href="#"></a></div>
+  </body>
+</html>

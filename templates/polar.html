@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<link rel="icon" href="https://media.discordapp.net/attachments/713379026487476235/819072942319206430/KPto4E44ExWZNAgGSdqYGa2sxpjxPu0cBjmtYwqHiZSpL8iFAa5oo0owksBGMRLWeBeoQAMckUbUYSXAjCIl7LAvUIBGOSKNqIIL.png" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>電神養成計畫</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+  	  <h1>第四節幕間、逃離光輝洞窟</h1>
+      <h2>六十秒挑戰賽<br>60 second challenge</h2>
+      <h3>「我最喜歡撿石頭的遊戲了。」—Ststone</h3>
+      <details><summary>劇情</summary><h3>你和偉凱去了每一個牆上刻著的座標，
+			<br>突然，洞窟開始激烈震動，洞口逐漸擴張，
+			<br>但是洞窟感覺過不久後會崩塌，
+			<br>非常緊張的你，這時突然想到
+			<br>要給天天的考卷不小心掉在其中一個網格上。
+			<br>還好，偉凱把剛剛的極座標都抄了起來，
+			<br>你快速地搶走偉凱的紙條，並且衝回洞窟內。
+      </h3></details>
+    </div>
+    <div class="main">
+    	如果x,y非整數，則它們的上下高斯都算是正確答案<br>
+    	<b>請輸入整數。</b>
+			<h1 id="oparea">owo</h1>
+		  <h2 id="result"></h2>
+			<h2 id="solution"></h2>
+			<h3 id="times"></h3>
+      x坐標<input type="number" type="hidden" id="x" class="inputnumber" style="width:45px;"> y坐標<input type="number" id="y" class="inputnumber" style="width:45px;"><br>
+      <br><br>
+      <input type="button" class="bruh" value="送出" onclick="ans()" id="ans">
+			<input type="button" class="bruh" value="start" onclick="starts()" id="start">
+      <form method="post">
+        <a name="data">傳送排名資料：</a><br>
+        <input class="score_button" type="hidden" id="COR" name="COR" value="" ></input>&emsp;
+        <input class="score_button" type="hidden" id="INC" name="INC" value="" ></input>&emsp;
+        <input class="score_button" type="hidden" id="UNA" name="UNA" value="" ></input>&emsp;<br>
+        <input placeholder="使用者名稱" id="sign_name" name="sname" value=""></input><br>
+        <input type="password" placeholder="密碼" id="sign_pass" name="spass" value=""></input><br>
+        <!--<input id="User_name" placeholder="請輸入你的暱稱" name="User_name"></input>-->
+        <button id="record" name="record" type="submit">送出</button>
+      </form><br>
+      <a class="score_button" href="https://tiantian.guaichi.repl.co/polar/">再來一次！</a>&emsp;&emsp;
+      <a class="score_button" href="https://tiantian.guaichi.repl.co/polar_rank/">排行榜</a>
+			<h3 style="color:MediumSeaGreen" id="cor"></h3>
+			<h3 style="color:Tomato" id="inc"></h3>
+			<h3 style="color:Black" id="una"></h3>
+      <script>
+      	var flag=1,bruh=0,c=0,w=0,u=0,avgt=0,i,aaaaa=0,d,angle,x,y,ansx,ansy,begin,end;
+					document.getElementById("ans").style.display="none";
+        function count(){
+        	if(c+w>0)
+        	  aaaaa=avgt/(c+w);
+        	document.getElementById("cor").innerHTML="正確題數："+c;
+			    document.getElementById("inc").innerHTML="錯誤題數："+w;
+			    document.getElementById("una").innerHTML="<br>答對率："+(c*100/(c+w)).toFixed(2)+"%<br>平均時間："+(aaaaa/1000).toFixed(3)+"s";
+        }
+        function starts(){
+          document.getElementById("start").style.display="none";
+					document.getElementById("ans").style.display="initial";
+        	count();
+        	begin=new Date().getTime();
+        	document.getElementById("x").value="";
+        	document.getElementById("y").value="";
+        	i=-1;
+        	if(Math.random()>0.5)
+        	  i=1;
+        	angle=parseInt(Math.random()*360);
+        	d=(parseInt(Math.random()*70))%48+2;
+        	document.getElementById("oparea").innerHTML="["+d+","+angle+"°]=(?,?)<br>";
+        	document.getElementById("result").innerHTML="";
+					document.getElementById("solution").innerHTML="";
+					document.getElementById("times").innerHTML="";
+          setTimeout(function(){
+            document.getElementById("ans").style.display ="none";
+            document.getElementById("oparea").innerHTML="時間到";
+            document.getElementById("COR").value=c;
+            document.getElementById("INC").value=w;
+            document.getElementById("UNA").value=u;
+          },60000);
+        }
+        function question(){
+        	count();
+        	begin=new Date().getTime();
+        	document.getElementById("x").value="";
+        	document.getElementById("y").value="";
+        	i=-1;
+        	if(Math.random()>0.5)
+        	  i=1;
+        	angle=parseInt(Math.random()*360);
+        	d=(parseInt(Math.random()*70))%50+1;
+        	document.getElementById("oparea").innerHTML="["+d+","+angle+"°]=(?,?)<br>";
+        }
+        function ans(){
+        	ansx=d*Math.cos(Math.PI *angle/180);
+        	ansy=d*Math.sin(Math.PI*angle/180);
+        	x=parseInt(document.getElementById("x").value);
+        	y=parseInt(document.getElementById("y").value);
+					if(isNaN(x))
+						x=0;
+					if(isNaN(y))
+						y=0;
+					end=new Date().getTime();
+					if((Math.floor(ansx)==x||Math.ceil(ansx)==x)&&(Math.floor(ansy)==y||Math.ceil(ansy)==y)){
+						document.getElementById("result").innerHTML="<p style=\"color:MediumSeaGreen;\">correct</p>";
+						c++;
+					}
+					else{
+						document.getElementById("result").innerHTML="<p style=\"color:Tomato;\">wrong</p>";
+						w++;
+					}
+					document.getElementById("solution").innerHTML="your answer: "+x+", "+y+"<br>correct answer: "+ansx.toFixed(1)+", "+ansy.toFixed(1);
+					document.getElementById("times").innerHTML="花費時間： "+(parseInt(end)-parseInt(begin))/1000.0+" 秒";
+					avgt+=parseInt(end)-parseInt(begin);
+					count();
+					question();
+				}
+      </script>
+    </div>
+    <a class="home_button" href="https://wakeye.reflec5.repl.co/home.html" >回首頁</a><br>
+      <a class="home_button" href="https://wakeye.reflec5.repl.co/polar.html" >第四節、出口被消失的洞窟</a>
+      <a class="home_button" href="#XD" >第五節、？？？？？？？？</a><br>
+      <br><br><br><br><br><br><br>
+    <div class="footer">
+      <big><i>website by Ststone 925</i></big>
+    </div>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.4/css/all.css">
+    <div id="page_top"><a href="#"></a></div>
+  </body>
+</html>
